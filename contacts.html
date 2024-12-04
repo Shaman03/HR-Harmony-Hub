@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Onboarding Process</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+ <h1>HR Harmony Hub</h1>
+  <div class="onboarding">
+    <!-- Checklist Section -->
+    <div class="section">
+      <h2>Checklist</h2>
+      <ul class="checklist">
+        <li><input type="checkbox" id="personal-details" /> <label for="personal-details">Fill Personal Details</label></li>
+        <li><input type="checkbox" id="upload-cv" /> <label for="upload-cv">Upload CV</label></li>
+        <li><input type="checkbox" id="review-submit" /> <label for="review-submit">Review & Submit</label></li>
+      </ul>
+    </div>
+
+    <!-- Personal Details Section -->
+    <div class="section">
+      <h2>Personal Details</h2>
+      <form>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required />
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="phone" required />
+      </form>
+    </div>
+
+    <!-- CV Upload Section -->
+    <div class="section">
+      <h2>CV Upload</h2>
+      <div class="upload-box">
+        <label for="cv-upload">Drag & drop file</label>
+        <input type="file" id="cv-upload" name="cv" accept=".pdf,.doc,.docx" />
+      </div>
+    </div>
+
+    <!-- Review & Submit Section -->
+    <div class="section">
+      <h2>Review & Submit</h2>
+      <p>Final step shows summary of entire application</p>
+      <p>Include personal details and CV</p>
+      <button onclick="reviewAndSubmit()">Submit</button>
+    </div>
+  </div>
+
+  <script>
+    function reviewAndSubmit() {
+      alert('Your application has been submitted successfully!');
+    }
+  </script>
+</body>
+</html>
