@@ -3,25 +3,156 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Onboarding Process</title>
-  <link rel="stylesheet" href="style.css">
+  <title>HR Harmony Hub</title>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      display: flex;
+      height: 100vh;
+      background-color: #f9f9f9;
+    }
+
+    /* Sidebar Styling */
+    .sidebar {
+      width: 250px;
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .sidebar h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+    }
+
+    .sidebar nav a {
+      display: block;
+      color: #fff;
+      text-decoration: none;
+      margin: 10px 0;
+      padding: 10px 15px;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    .sidebar nav a:hover,
+    .sidebar nav a.active {
+      background-color: #007bff;
+    }
+
+    .sidebar footer {
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .main-content h2 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .checklist ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .checklist li {
+      margin-bottom: 10px;
+    }
+
+    .checklist input[type="checkbox"] {
+      margin-right: 10px;
+    }
+
+    form label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+
+    form input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .upload-box {
+      border: 2px dashed #007bff;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .upload-box input[type="file"] {
+      display: none;
+    }
+
+    .upload-box label {
+      display: block;
+      cursor: pointer;
+      color: #007bff;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
 </head>
 <body>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h1>HR Harmony Hub</h1>
+    <nav>
+      <a href="#checklist" class="active">Checklist</a>
+      <a href="#personal-details">Personal Details</a>
+      <a href="#cv-upload">CV Upload</a>
+      <a href="#review-submit">Review & Submit</a>
+    </nav>
+    <footer>&copy; 2024 HR Harmony Hub</footer>
+  </div>
 
- <h1>HR Harmony Hub</h1>
-  <div class="onboarding">
+  <!-- Main Content -->
+  <div class="main-content">
     <!-- Checklist Section -->
-    <div class="section">
+    <section id="checklist" class="tab-content">
       <h2>Checklist</h2>
       <ul class="checklist">
-        <li><input type="checkbox" id="personal-details" /> <label for="personal-details">Fill Personal Details</label></li>
-        <li><input type="checkbox" id="upload-cv" /> <label for="upload-cv">Upload CV</label></li>
-        <li><input type="checkbox" id="review-submit" /> <label for="review-submit">Review & Submit</label></li>
+        <li><input type="checkbox" id="personal-details-check" /> <label for="personal-details-check">Fill Personal Details</label></li>
+        <li><input type="checkbox" id="upload-cv-check" /> <label for="upload-cv-check">Upload CV</label></li>
+        <li><input type="checkbox" id="review-submit-check" /> <label for="review-submit-check">Review & Submit</label></li>
       </ul>
-    </div>
+    </section>
 
     <!-- Personal Details Section -->
-    <div class="section">
+    <section id="personal-details" class="tab-content" style="display: none;">
       <h2>Personal Details</h2>
       <form>
         <label for="name">Name:</label>
@@ -33,27 +164,44 @@
         <label for="phone">Phone:</label>
         <input type="tel" id="phone" name="phone" required />
       </form>
-    </div>
+    </section>
 
     <!-- CV Upload Section -->
-    <div class="section">
+    <section id="cv-upload" class="tab-content" style="display: none;">
       <h2>CV Upload</h2>
       <div class="upload-box">
-        <label for="cv-upload">Drag & drop file</label>
-        <input type="file" id="cv-upload" name="cv" accept=".pdf,.doc,.docx" />
+        <label for="cv-upload-file">Drag & drop file or click here</label>
+        <input type="file" id="cv-upload-file" name="cv" accept=".pdf,.doc,.docx" />
       </div>
-    </div>
+    </section>
 
     <!-- Review & Submit Section -->
-    <div class="section">
+    <section id="review-submit" class="tab-content" style="display: none;">
       <h2>Review & Submit</h2>
-      <p>Final step shows summary of entire application</p>
-      <p>Include personal details and CV</p>
+      <p>Final step shows summary of the entire application.</p>
+      <p>Include personal details and uploaded CV.</p>
       <button onclick="reviewAndSubmit()">Submit</button>
-    </div>
+    </section>
   </div>
 
   <script>
+    // Sidebar Navigation
+    document.querySelectorAll('.sidebar nav a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        // Remove active class from all links
+        document.querySelectorAll('.sidebar nav a').forEach(l => l.classList.remove('active'));
+        // Add active class to clicked link
+        link.classList.add('active');
+
+        // Show corresponding section
+        const target = document.querySelector(link.getAttribute('href'));
+        document.querySelectorAll('.tab-content').forEach(section => section.style.display = 'none');
+        target.style.display = 'block';
+      });
+    });
+
+    // Review & Submit Functionality
     function reviewAndSubmit() {
       alert('Your application has been submitted successfully!');
     }
