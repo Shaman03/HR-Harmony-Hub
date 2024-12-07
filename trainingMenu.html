@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Traning Menu </title>
+    <title>Training Menu</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="container">
@@ -22,31 +23,88 @@
 
         <!-- Main Content -->
         <div class="main">
-            <h1> Training Menu </h1>
+            <h1>Training Menu</h1>
             
-            <!-- Card Section -->
-            <div class="card">
-                <div class="card-content">
-                    <h2>Performance Management</h2>
-                    <button onclick="signIn()">Sign In</button>
+            <!-- Card Section with Modal Integration -->
+            <div class="row">
+                <!-- Performance Management -->
+                <div class="col-md-3 text-center">
+                    <div class="card" onclick="openModal('Performance Management', 'This course focuses on setting objectives, evaluating employee performance, and aligning individual goals with company strategy.')">
+                        <div class="card-body">
+                            <h5 class="card-title">Performance Management</h5>
+                            <button class="btn btn-primary">Learn More</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-content">
-                    <h2>HR Technology and Systems</h2>
-                    <button onclick="signIn()">Sign In</button>
+                
+                <!-- HR Technology and Systems -->
+                <div class="col-md-3 text-center">
+                    <div class="card" onclick="openModal('HR Technology and Systems', 'Explore the tools and software that streamline HR processes, including payroll, recruitment, and employee engagement.')">
+                        <div class="card-body">
+                            <h5 class="card-title">HR Technology and Systems</h5>
+                            <button class="btn btn-primary">Learn More</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-content">
-                    <h2>Workplace Wellness Programs</h2>
-                    <button onclick="signIn()">Sign In</button>
+
+                <!-- Workplace Wellness Programs -->
+                <div class="col-md-3 text-center">
+                    <div class="card" onclick="openModal('Workplace Wellness Programs', 'Understand how to design and implement programs that promote employee well-being and productivity.')">
+                        <div class="card-body">
+                            <h5 class="card-title">Workplace Wellness Programs</h5>
+                            <button class="btn btn-primary">Learn More</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-content">
-                    <h2>Leadership Development</h2>
-                    <button onclick="signIn()">Sign In</button>
+
+                <!-- Leadership Development -->
+                <div class="col-md-3 text-center">
+                    <div class="card" onclick="openModal('Leadership Development', 'Learn strategies for cultivating strong leadership skills to inspire and guide teams effectively.')">
+                        <div class="card-body">
+                            <h5 class="card-title">Leadership Development</h5>
+                            <button class="btn btn-primary">Learn More</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- Modal Structure -->
+    <div id="myModal" class="modal" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 id="modalTitle" class="modal-title"></h5>
+                    <button type="button" class="btn-close" aria-label="Close" onclick="closeModal()"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="modalDescription"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal()">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(title, description) {
+            const modal = document.getElementById("myModal");
+            const modalTitle = document.getElementById("modalTitle");
+            const modalDescription = document.getElementById("modalDescription");
+
+            modal.style.display = "block";
+            modalTitle.innerText = title;
+            modalDescription.innerText = description;
+        }
+
+        function closeModal() {
+            const modal = document.getElementById("myModal");
+            modal.style.display = "none";
+        }
+    </script>
 </body>
 </html>
+
 
