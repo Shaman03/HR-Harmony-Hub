@@ -5,11 +5,16 @@
   box-sizing: border-box;
 }
 
+/* General Body Styling */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Orbitron', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f4f4f9;
+  background: linear-gradient(135deg, rgba(53, 145, 238, 0.5), rgb(231, 230, 230));
+  color: #ffffff;
+  overflow-x: hidden;
 }
 
 /* Container and Layout */
@@ -18,17 +23,18 @@ body {
   min-height: 100vh;
 }
 
-/* Side Navigation */
+/* Sidebar Navigation */
 .sidebar {
-  background-color: #007bff;
-  color: #fff;
+  background-color: rgba(0, 123, 255, 0.7); /* Semi-transparent blue */
+  color: #ffffff;
   width: 250px;
   padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
 }
 
 .sidebar h2 {
-  margin-bottom: 15px;
-  font-size: 1.5em;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
 }
 
 .sidebar ul {
@@ -37,30 +43,39 @@ body {
 }
 
 .sidebar ul li {
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .sidebar ul li a {
-  color: #fff;
+  color: #ffffff;
   text-decoration: none;
-  font-size: 1em;
+  font-size: 1.2rem;
+  padding: 5px 0;
+  display: block;
+  transition: color 0.3s ease-in-out;
 }
 
 .sidebar ul li a:hover {
+  color: #34ebdb; /* Teal accent color */
   text-decoration: underline;
 }
 
 /* Main Content */
 .main {
   flex: 1;
-  padding: 20px;
+  padding: 30px;
+  background: linear-gradient(135deg, rgba(0, 157, 255, 0.1), #ffffff);
+  color: #ffffff;
 }
 
 h1 {
-  margin-bottom: 20px;
-  color: #333;
+  margin-bottom: 30px;
+  font-size: 2.5rem;
+  color: #ffffff;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
+/* Card Layout */
 .card {
   display: flex;
   justify-content: space-between;
@@ -69,46 +84,67 @@ h1 {
 }
 
 .card-content {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.1); /* Transparent white */
+  border: 2px solid #ffffff;
+  border-radius: 15px;
   flex: 1;
-  padding: 20px;
+  padding: 25px;
   margin: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-content:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 12px rgba(0, 123, 255, 0.5);
 }
 
 h2 {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   margin-bottom: 15px;
-  color: #007bff;
+  color: #ffffff;
 }
 
 button {
-  background-color: #007bff;
-  color: white;
+  background-color: rgba(53, 145, 238, 0.8); /* Vibrant blue */
+  color: #ffffff;
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: 12px 25px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-
-a {
-  display: block;
-  margin-top: 20px;
-  text-align: center;
-  color: #007bff;
-  text-decoration: none;
+  transition: background-color 0.3s ease;
   font-size: 1rem;
 }
 
+button:hover {
+  background-color: rgba(53, 145, 238, 1); /* Darker blue on hover */
+}
+
+/* Links */
+a {
+  color: #34ebdb;
+  text-decoration: none;
+  font-size: 1.2rem;
+  margin-top: 20px;
+  display: block;
+  text-align: center;
+}
+
 a:hover {
+  color: #ffffff;
   text-decoration: underline;
 }
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .card-content {
+    flex: 1 1 100%; /* Single column on small screens */
+  }
+
+  .sidebar {
+    width: 200px;
+  }
+}
+
 
