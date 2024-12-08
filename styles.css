@@ -267,3 +267,13 @@ body {
     color: #ffffff;
 
 }
+
+.bottom-right-image {
+    position: fixed; /* Keeps it in the same position as the user scrolls */
+    bottom: 20px; /* Distance from the bottom */
+    right: 20px; /* Distance from the right */
+    width: 100px; /* Adjust the size of the image */
+    height: auto; /* Maintain aspect ratio */
+    z-index: 1000; /* Ensure it appears above other content */
+  }
+  
