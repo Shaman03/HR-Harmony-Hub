@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify, send_from_directory, abort #Imports from flask Tazneem code
 import os
 from werkzeug.security import generate_password_hash, check_password_hash #Import for paswword hashing security implementation 
-import sqlite3 #Import to use SQLite3 inbuilt vs
+import sqlite #Import to use SQLite inbuilt vs
 import datetime
 from werkzeug.utils import secure_filename #Import for secure file storing
 
