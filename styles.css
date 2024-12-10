@@ -111,7 +111,7 @@ body {
 }
 
 .nav-link {
-    color: #34ebdb;
+    color: #fffffd;
     font-weight: bold;
 }
 
@@ -141,23 +141,6 @@ p {
     background-color: rgba(255, 255, 255, 0.1);
     font-weight: bold;
 }
-
-/* Modal styling */
-.modal {
-    background-color: rgba(0, 0, 0, 0.8);
-}
-
-.modal-content {
-    background: linear-gradient(135deg, rgba(0, 157, 255, 0.5), rgba(0, 0, 0, 0.7));
-    color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-}
-
-.modal-header {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-}
-
 .btn-close {
     color: #fff;
 }
@@ -165,7 +148,7 @@ p {
 .image-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
-    grid-template-rows: auto auto auto; /* Three rows for the items */
+    grid-template-rows: auto auto auto; /* 3 rows for the items */
     gap: 50px; /* Gap between grid items */
     padding: 60px; /* Padding around the grid */
     height: auto;
@@ -194,6 +177,7 @@ p {
     font-size: 18px;
 }
 
+
 /* Modal styles */
 .modal {
     display: none;
@@ -216,6 +200,16 @@ p {
     border-radius: 10px;
 }
 
+.modal-content {
+    background: linear-gradient(135deg, rgba(0, 157, 255, 0.5), rgba(0, 0, 0, 0.7));
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.modal-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
 .close {
     position: absolute;
     top: 15px;
@@ -227,7 +221,7 @@ p {
 }
 
 body {
-    background: linear-gradient(135deg, #3591ee6f, #ffffff);;
+    background: linear-gradient(135deg, #3591ee6f, #ffffff);
     font-family: 'Orbitron', sans-serif;
     color: #fff;
 }
@@ -251,22 +245,68 @@ body {
     background-color: #3591ee6f;
     border-color: #ffffff;
 }
-#infoPopup {
-    display: none;
-    background: #3591ee6f;
-    border: 1px solid #ccc;
-    padding: 20px;
-    width: 100%;
-    color: #ffffff;
-    margin-top: 20px;
-    border-radius: 10px;
-}
 
 .btn-info{
     background: #3591ee6f;
     color: #ffffff;
 
 }
+
+/* Custom style to align form to the left */
+.custom-container {
+    position: left;
+}
+
+
+/* Styling the popup container */
+#infoPopup {
+    display: none;
+    background-color:#3591ee6f;
+    color: white;
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 500px;
+    margin: 0 auto;
+    box-shadow: 0 4px 6px linear-gradient(135deg, #3591ee6f);
+    text-align: left;
+    font-size: 1rem;
+    border-color: #ffffff;
+}
+
+/* Display the popup */
+#infoPopup.show {
+    display: block;
+}
+
+/* Close button styling */
+#infoPopup .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Button Styling */
+button.btn-info {
+    background-color: #3591ee6f;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Button hover effect */
+button.btn-info:hover {
+    background-color: #3591ee6f;
+    color: #ffffff;
+}
+
 
 .bottom-right-image {
     position: fixed; /* Keeps it in the same position as the user scrolls */
