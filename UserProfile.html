@@ -9,6 +9,62 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <script src="script.js"></script>
+
+    <script>
+        // JavaScript function to submit the profile form
+        document.getElementById("profileForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent default form submission
+    
+            const formData = new FormData(this); // Collect form data
+    
+            fetch('/save_user_profile', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                // Handle success or error response
+                alert(data); // Display the backend response
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while saving the profile.');
+            });
+        });
+    </script>
+ <script>
+    // Function to fetch and display user info
+    function displayInfo() {
+        fetch('/display_info')
+            .then(response => response.json()) // Parse JSON response
+            .then(data => {
+                if (data.error) {
+                    alert(data.error); // Handle error from the backend
+                } else {
+                    // Construct HTML for displaying user info
+                    const infoHtml = `
+                        <table class="table">
+                            <tr><th>Name</th><td>${data.name}</td></tr>
+                            <tr><th>Email</th><td>${data.email}</td></tr>
+                            <tr><th>Department</th><td>${data.department}</td></tr>
+                            <tr><th>Job Title</th><td>${data.job_title}</td></tr>
+                            <tr><th>Phone Number</th><td>${data.phone_number}</td></tr>
+                            <tr><th>Address</th><td>${data.address}</td></tr>
+                            <tr><th>Salary</th><td>${data.salary}</td></tr>
+                            <tr><th>CV Filename</th><td>${data.cv_filename}</td></tr>
+                        </table>
+                    `;
+                    document.getElementById('infoPopup').innerHTML = infoHtml;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to fetch user info.');
+            });
+    }
+</script>
+   
     <div class="login_header">
         <nav class="navbar navbar-dark custom-bg-color" aria-label="label">
             <div class="container-fluid">
@@ -36,6 +92,7 @@
                 <div class="card p-4">
                     <h5 class="card-title text-center">User Info </h5>
                     <form id="profileForm">
+
                         <h6>Employee Details</h6>
                         <div class="mb-3">
                             <input type="text" class="form-control" name="department" placeholder="Department" required>
