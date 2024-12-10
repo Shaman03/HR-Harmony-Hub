@@ -54,6 +54,9 @@ document.addEventListener("DOMContentLoaded", function() {
             .catch(error => {
                 console.error('Error:', error);
                 alert('Failed to fetch user info.');
+
+ 
+
             });
     };
 });
