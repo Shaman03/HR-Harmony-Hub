@@ -11,28 +11,6 @@
 <body>
     <script src="script.js"></script>
 
-    <script>
-    function submitProfile() {
-        var form = new FormData(document.getElementById('profileForm'));
-
-        fetch("{{ url_for('save_user_profile') }}", {
-            method: 'POST',
-            body: form
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert("Profile saved successfully!");
-            } else {
-                alert("Error: " + data.message);
-            }
-        })
-        .catch(error => {
-            alert("An error occurred while saving the profile.");
-        });
-    }
-</script>
-
 <!-- Updated form with onclick submit using JavaScript -->
 <form id="profileForm" onsubmit="event.preventDefault(); submitProfile();">
     <!-- form fields here -->
