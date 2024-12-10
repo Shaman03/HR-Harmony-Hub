@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function() {
     // 1. Handle form submission for profile updates
     const profileForm = document.getElementById("profileForm");
