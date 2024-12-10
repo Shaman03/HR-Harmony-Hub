@@ -127,7 +127,7 @@ def save_user_profile():
     
     user_id = session['user_id']
     
-    # Retrieves form data from the frontend page 
+    # Retrieve form data from the frontend
     department = request.form.get('department')
     job_title = request.form.get('job_title')
     phone_number = request.form.get('phone_number')
@@ -135,7 +135,7 @@ def save_user_profile():
     salary = request.form.get('salary')
     file = request.files.get('file')  # Get file from form
 
-    # Ensure all form data is correctly retrieved
+    # Ensure all required fields are provided
     if not all([department, job_title, phone_number, address, salary]):
         return 'All fields are required.', 400
 
@@ -143,11 +143,24 @@ def save_user_profile():
     cv_filename = None
     if file and allowed_file(file.filename):
         cv_filename = secure_filename(file.filename)
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], cv_filename)) #Saves file to uploads folder and name to db
-    
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], cv_filename))  # Save file to uploads folder
+
     try:
         conn = sqlite3.connect(DATABASE)
         cursor = conn.cursor()
+
+        # Update the users table with the provided form data
+        cursor.execute('''
+            UPDATE users
+            SET department = ?, job_title = ?, phone_number = ?, address = ?, salary = ?, cv_filename = ?, upload_time = ?
+            WHERE id = ?
+        ''', (department, job_title, phone_number, address, float(salary), cv_filename, datetime.datetime.now(), user_id))
+        
+        conn.commit()
+        conn.close()
+        return 'User profile updated successfully.', 200
+    except sqlite3.Error as e:
+        return f'Error saving user profile: {e}', 500
 
         # Update users table in the database
         cursor.execute('''
