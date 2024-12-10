@@ -12,26 +12,35 @@
     <script src="script.js"></script>
 
     <script>
-        // JavaScript function to submit the profile form
-        document.getElementById("profileForm").addEventListener("submit", function(event) {
-            event.preventDefault(); // Prevent default form submission
-    
-            const formData = new FormData(this); // Collect form data
-    
-            fetch('/save_user_profile', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.text())
-            .then(data => {
-                // Handle success or error response
-                alert(data); // Display the backend response
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('An error occurred while saving the profile.');
-            });
+    function submitProfile() {
+        var form = new FormData(document.getElementById('profileForm'));
+
+        fetch("{{ url_for('save_user_profile') }}", {
+            method: 'POST',
+            body: form
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert("Profile saved successfully!");
+            } else {
+                alert("Error: " + data.message);
+            }
+        })
+        .catch(error => {
+            alert("An error occurred while saving the profile.");
         });
+    }
+</script>
+
+<!-- Updated form with onclick submit using JavaScript -->
+<form id="profileForm" onsubmit="event.preventDefault(); submitProfile();">
+    <!-- form fields here -->
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary">Submit Profile</button>
+    </div>
+</form>
+
     </script>
  <script>
     // Function to fetch and display user info
