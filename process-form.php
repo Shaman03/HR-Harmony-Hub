@@ -3,7 +3,7 @@
 $servername = "localhost"; // Default XAMPP server
 $username = "root"; // Default XAMPP MySQL user
 $password = ""; // No password by default in XAMPP
-$database = "hr_harmony_hub"; // Replace with your database name
+$database = "hr harmony hub"; // Replace with your database name
 
 // Connect to the database
 $conn = new mysqli($servername, $username, $password, $database);
