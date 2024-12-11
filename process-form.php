@@ -62,7 +62,7 @@ $conn->close();
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "`user register`"; // Make sure to use backticks for database name
+$dbname = "`user register`"; //
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
