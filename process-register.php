@@ -1,9 +1,9 @@
 <?php
-
+// Database connection settings
 $servername = "localhost";
 $username = "root";
-$password = "";
-$dbname = "`user register`"; //
+$password = "";  // Default XAMPP MySQL password
+$dbname = "user_register";  // Your database name
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -13,20 +13,37 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Assuming form data is sent via POST
-$username = $_POST['username'];
-$email = $_POST['email'];
-$password = $_POST['password'];  // You should hash the password in production
+// Check if the form was submitted
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    // Get the form data
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];  // Plain-text password from form
+    $password1 = $_POST['password1']; // Confirm password from form
 
-$sql = "INSERT INTO `users` (username, email, password) VALUES ('$username', '$email', '$password')";
+    // Check if passwords match
+    if ($password === $password1) {
+        // Hash the password before storing
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
-} else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+        // Prepare the SQL statement
+        $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
+        $stmt->bind_param("sss", $username, $email, $hashed_password);
+
+        // Execute the statement and check if successful
+        if ($stmt->execute()) {
+            echo "New record created successfully!";
+        } else {
+            echo "Error: " . $stmt->error;
+        }
+
+        // Close the prepared statement
+        $stmt->close();
+    } else {
+        echo "Passwords do not match!";
+    }
 }
 
+// Close the database connection
 $conn->close();
-
-
 ?>
